@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,7 +41,7 @@ public class PlayStationControlador {
         playStationServicio.eliminarPlayStation(noSerie);
     }
 
-    @PutMapping(path="/modificarPlayStation",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    @PutMapping("/modificarPlayStation")
     public PlayStation modificarPlayStation(@RequestBody PlayStation playStation){
         return playStationServicio.modificarPlayStation(playStation);
     }

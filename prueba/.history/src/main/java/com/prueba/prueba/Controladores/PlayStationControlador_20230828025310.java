@@ -25,7 +25,7 @@ public class PlayStationControlador {
     PlayStationServicio playStationServicio;
 
     @PostMapping(path = "/registrarPlayStation",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public PlayStation registrarPlayStation(PlayStation playStation){
+    public PlayStation registrarPlayStation(@RequestBody PlayStation playStation){
         return playStationServicio.registrarPlayStation(playStation);
     }
 
@@ -40,7 +40,7 @@ public class PlayStationControlador {
         playStationServicio.eliminarPlayStation(noSerie);
     }
 
-    @PutMapping(path="/modificarPlayStation",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    @PutMapping("/modificarPlayStation")
     public PlayStation modificarPlayStation(@RequestBody PlayStation playStation){
         return playStationServicio.modificarPlayStation(playStation);
     }

@@ -3,13 +3,13 @@ package com.prueba.prueba.Controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,8 +24,8 @@ public class PlayStationControlador {
     @Autowired
     PlayStationServicio playStationServicio;
 
-    @PostMapping(path = "/registrarPlayStation",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public PlayStation registrarPlayStation(PlayStation playStation){
+    @RequestMapping(path = "/registrarPlayStation", method = RequestMethod.POST)
+    public PlayStation registrarPlayStation(@RequestBody PlayStation playStation){
         return playStationServicio.registrarPlayStation(playStation);
     }
 
@@ -40,7 +40,7 @@ public class PlayStationControlador {
         playStationServicio.eliminarPlayStation(noSerie);
     }
 
-    @PutMapping(path="/modificarPlayStation",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    @PutMapping("/modificarPlayStation")
     public PlayStation modificarPlayStation(@RequestBody PlayStation playStation){
         return playStationServicio.modificarPlayStation(playStation);
     }
