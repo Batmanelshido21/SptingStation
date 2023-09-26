@@ -7,10 +7,11 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ import com.prueba.prueba.Objetos.PlayStation;
 import com.prueba.prueba.Servicios.PlayStationServicio;
 
 @RestController
-@RequestMapping("/PlayStation")
+@RequestMapping(path="/PlayStation",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 @ResponseBody
 public class PlayStationControlador {
     
@@ -45,7 +46,7 @@ public class PlayStationControlador {
 
     @CrossOrigin
     @PutMapping(value="/modificarPlayStation",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public PlayStation modificarPlayStation(@ModelAttribute PlayStation playStation){
+    public PlayStation modificarPlayStation(@RequestBody PlayStation playStation){
         return playStationServicio.modificarPlayStation(playStation);
     }
 
