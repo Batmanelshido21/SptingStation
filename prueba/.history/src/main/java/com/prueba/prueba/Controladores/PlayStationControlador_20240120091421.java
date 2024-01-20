@@ -7,11 +7,13 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prueba.prueba.DTO.PlayStationDTO;
@@ -19,15 +21,15 @@ import com.prueba.prueba.Objetos.PlayStation;
 import com.prueba.prueba.Servicios.PlayStationServicio;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/PlayStation")
+@ResponseBody
 public class PlayStationControlador {
     
     @Autowired
     PlayStationServicio playStationServicio;
 
-    @PostMapping(path = "/registrarPlayStation",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public PlayStation registrarPlayStation(PlayStation playStation){
+    @PostMapping("/registrarPlayStation")
+    public PlayStation registrarPlayStation(@RequestBody PlayStation playStation){
         return playStationServicio.registrarPlayStation(playStation);
     }
 
@@ -42,8 +44,9 @@ public class PlayStationControlador {
         playStationServicio.eliminarPlayStation(noSerie);
     }
 
+    @CrossOrigin
     @PutMapping("/modificarPlayStation")
-    public PlayStation modificarPlayStation(@RequestBody PlayStation playStation){
+    public PlayStation modificarPlayStation(@RequestParam PlayStation playStation){
         return playStationServicio.modificarPlayStation(playStation);
     }
 
