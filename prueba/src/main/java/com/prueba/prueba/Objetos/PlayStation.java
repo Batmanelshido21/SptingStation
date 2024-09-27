@@ -8,8 +8,6 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -42,7 +40,7 @@ public class PlayStation {
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(name = "PlayStation_has_Cuenta", joinColumns = @JoinColumn(name="PlayStation_noSerie"),
     inverseJoinColumns = @JoinColumn(name = "Cuenta_nombreUsuario"))
-    Set<Cuenta>cuenta;
+    private Set<Cuenta>cuenta;
 
     @OneToOne(mappedBy = "playStation")
     @JsonIgnore

@@ -27,7 +27,7 @@ public class Partida {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Cuenta_nombreUsuario", referencedColumnName = "nombreUsuario",
-    nullable = true)
+    nullable = false)
     private Cuenta cuenta;
     
 }

@@ -30,9 +30,8 @@ public class Cuenta {
     @Column(name="password",unique = false, nullable = false)
     private String password;
     
-    @Column(nullable = true, unique = true)
+    @Column(nullable = true)
     @ManyToMany(mappedBy = "cuenta")
-    @JsonIgnore
     Set<PlayStation> playStation;
 
     @OneToOne(mappedBy = "cuenta")

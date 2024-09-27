@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,12 +29,13 @@ public class PlayStationControlador {
     PlayStationServicio playStationServicio;
 
     @PostMapping("/registrarPlayStation")
-    public PlayStation registrarPlayStation(PlayStation playStation){
+    public PlayStation registrarPlayStation(@RequestBody PlayStation playStation){
         return playStationServicio.registrarPlayStation(playStation);
     }
 
     @GetMapping("/obtenerPlayStations")
     public List<PlayStation> obtenerPlayStation(){
+        String nombre="";
         return playStationServicio.obtenerPlayStations();
     }
 
@@ -43,9 +45,8 @@ public class PlayStationControlador {
         playStationServicio.eliminarPlayStation(noSerie);
     }
 
-    @CrossOrigin
-    @PutMapping(value="/modificarPlayStation",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public PlayStation modificarPlayStation(@ModelAttribute PlayStation playStation){
+    @PutMapping("/modificarPlayStation")
+    public PlayStation modificarPlayStation(@RequestBody PlayStation playStation){
         return playStationServicio.modificarPlayStation(playStation);
     }
 

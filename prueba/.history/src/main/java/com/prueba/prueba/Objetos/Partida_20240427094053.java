@@ -2,8 +2,6 @@ package com.prueba.prueba.Objetos;
 
 import java.sql.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -29,8 +27,7 @@ public class Partida {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Cuenta_nombreUsuario", referencedColumnName = "nombreUsuario",
-    nullable = true)
-    @JsonIgnore
+    nullable = false)
     private Cuenta cuenta;
     
 }

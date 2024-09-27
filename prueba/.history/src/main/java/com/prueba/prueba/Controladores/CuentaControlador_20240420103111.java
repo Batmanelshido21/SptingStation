@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prueba.prueba.Objetos.Cuenta;
@@ -25,7 +26,6 @@ public class CuentaControlador {
 
     @PostMapping("/registrarCuenta")
     public Cuenta registrarCuenta(@RequestBody Cuenta cuenta){
-        
         return cuentaServicio.registrarCuenta(cuenta);
     }
 
@@ -40,8 +40,13 @@ public class CuentaControlador {
     }
 
     @GetMapping("/obtenerCuentaPorNombre")
-    public Optional<Cuenta> obtenerCuentaPorNombre(@PathVariable String nombre){
+    public Optional<Cuenta> obtenerCuentaPorNombre(@RequestParam String nombre){
         return cuentaServicio.obtenerCuentaPorNombre(nombre);
+    }
+
+    @DeleteMapping("/eliminarCuenta")
+    public void eliminarCuenta(@RequestParam String nombre){
+        cuentaServicio.eliminarcuenta(nombre);
     }
     
 }
